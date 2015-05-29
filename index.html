@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>OpenRatingView by francescocervone</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>OpenRatingView</h1>
+        <h2>Android library to create and manage simple rating views with stars.</h2>
+        <a href="https://github.com/francescocervone/OpenRatingView" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="openratingview" class="anchor" href="#openratingview" aria-hidden="true"><span class="octicon octicon-link"></span></a>OpenRatingView</h1>
+
+<p>Android library to create and manage simple rating views with stars.</p>
+
+<p><img src="https://raw.githubusercontent.com/francescocervone/OpenRatingView/master/screen.png" alt="screenshot" width="50%" height="50%"></p>
+
+<h2>
+<a id="including-in-your-project" class="anchor" href="#including-in-your-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Including in your project</h2>
+
+<ul>
+<li>Create a <code>libraries</code> folder under your project root directory</li>
+<li>Copy my <code>openratingview</code> folder under your <code>libraries</code> folder</li>
+<li>Edit your <code>settings.gradle</code> in your main directory adding: </li>
+</ul>
+
+<div class="highlight highlight-Gradle"><pre>include <span class="pl-s"><span class="pl-pds">'</span>:libraries:openratingview<span class="pl-pds">'</span></span></pre></div>
+
+<ul>
+<li>Edit your <code>build.gradle</code> file adding:</li>
+</ul>
+
+<div class="highlight highlight-Gradle"><pre><span class="pl-en">dependencies</span> {
+    compile project(<span class="pl-s"><span class="pl-pds">'</span>:libraries:openratingview<span class="pl-pds">'</span></span>)
+}</pre></div>
+
+<h2>
+<a id="xml-example" class="anchor" href="#xml-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>XML example</h2>
+
+<div class="highlight highlight-xml"><pre>&lt;<span class="pl-ent">com</span>.francescocervone.openratingview.RatingView
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>@+id/rating_view<span class="pl-pds">"</span></span>
+        <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">orv_max_rating</span>=<span class="pl-s"><span class="pl-pds">"</span>5<span class="pl-pds">"</span></span>
+        <span class="pl-e">app</span><span class="pl-e">:</span><span class="pl-e">orv_star_color</span>=<span class="pl-s"><span class="pl-pds">"</span>white<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_width</span>=<span class="pl-s"><span class="pl-pds">"</span>match_parent<span class="pl-pds">"</span></span>
+        <span class="pl-e">android</span><span class="pl-e">:</span><span class="pl-e">layout_height</span>=<span class="pl-s"><span class="pl-pds">"</span>wrap_content<span class="pl-pds">"</span></span>/&gt;</pre></div>
+
+<ul>
+<li>
+<code>orv_max_rating</code> represents the number of stars you want to use (default 5)</li>
+<li>
+<code>orv_star_color</code> can be only "white" or "black" (default "white")</li>
+</ul>
+
+<h2>
+<a id="onstarclick-example" class="anchor" href="#onstarclick-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>OnStarClick example</h2>
+
+<p>You can catch the user click on stars:</p>
+
+<div class="highlight highlight-java"><pre>mRatingView<span class="pl-k">.</span>setOnStarClickListener(<span class="pl-k">new</span> <span class="pl-smi">RatingView</span>.<span class="pl-smi">OnStarClickListener</span>() {
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onClick</span>(<span class="pl-k">int</span> <span class="pl-v">position</span>) {
+        <span class="pl-smi">Toast</span><span class="pl-k">.</span>makeText(getApplicationContext(), <span class="pl-s"><span class="pl-pds">"</span>Star <span class="pl-pds">"</span></span> <span class="pl-k">+</span> position, <span class="pl-smi">Toast</span><span class="pl-c1"><span class="pl-k">.</span>LENGTH_SHORT</span>)<span class="pl-k">.</span>show();
+
+    }
+});</pre></div>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>The MIT License (MIT)
+
+Copyright (c) 2015 Francesco Cervone
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</code></pre>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/francescocervone/OpenRatingView/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/francescocervone/OpenRatingView/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/francescocervone/OpenRatingView"></a> is maintained by <a href="https://github.com/francescocervone">francescocervone</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-47049106-6");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
