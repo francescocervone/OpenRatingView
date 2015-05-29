@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RatingView">
+        <attr name="orv_max_rating" format="integer"/>
+        <attr name="orv_star_color" format="enum">
+            <enum name="white" value="0"/>
+            <enum name="black" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>
