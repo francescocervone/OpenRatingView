@@ -3,16 +3,20 @@ Android library to create and manage simple rating views with stars.
 
 <img src="screen.png" alt="screenshot" width="50%" height="50%"/>
 ## Including in your project
-* Create a `libraries` folder under your project root directory
-* Copy my `openratingview` folder under your `libraries` folder
-* Edit your `settings.gradle` in your main directory adding: 
+* Add in your root `build.gradle` at the end of repositories:
 ```Gradle
-include ':libraries:openratingview'
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
 ```
-* Edit your `build.gradle` file adding:
-```Gradle
+* Add the dependency:
+```
 dependencies {
-    compile project(':libraries:openratingview')
+    ...
+    compile 'com.github.francescocervone:OpenRatingView:1.0.1'
 }
 ```
 
@@ -47,7 +51,7 @@ mRatingView.setOnStarClickListener(new RatingView.OnStarClickListener() {
 ## License
     The MIT License (MIT)
 
-    Copyright (c) 2015 Francesco Cervone
+    Copyright (c) 2016 Francesco Cervone
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal

@@ -7,9 +7,6 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-/**
- * Created by Ciccio on 23/05/15.
- */
 public class RatingView extends LinearLayout {
     public static final int COLOR_WHITE = 0, COLOR_BLACK = 1;
     private int mMaxRating;

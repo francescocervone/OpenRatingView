@@ -14,16 +14,13 @@ import android.widget.LinearLayout;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-/**
- * Created by Ciccio on 23/05/15.
- */
 public class StarView extends ImageView {
     private int mPosition;
     private RatingView mRatingView;
     private boolean mChecked;
     private int mWidth;
     private int mColor;
-    private int attempts =0;
+    private int attempts = 0;
 
     public StarView(Context context, int position, int color, RatingView ratingView) {
         super(context);
@@ -72,29 +69,35 @@ public class StarView extends ImageView {
     }
 
     private void refreshDrawable() {
-        if (mWidth<=0)
+        if (mWidth <= 0)
             return;
-        Picasso.with(getContext()).load(getDrawable(mChecked)).resize(mWidth, mWidth).centerInside().into(StarView.this, new Callback() {
-            @Override
-            public void onSuccess() {
-                attempts=0;
-            }
+        Picasso.with(getContext())
+                .load(getDrawable(mChecked))
+                .noFade()
+                .resize(mWidth, mWidth)
+                .centerInside()
+                .into(StarView.this,
+                        new Callback() {
+                            @Override
+                            public void onSuccess() {
+                                attempts = 0;
+                            }
 
-            @Override
-            public void onError() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        attempts++;
-                        Log.d("simpleratingview", "Attempt " + attempts);
-                        if (attempts <= 3)
-                            refreshDrawable();
-                        else
-                            attempts = 0;
-                    }
-                }, 50);
-            }
-        });
+                            @Override
+                            public void onError() {
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        attempts++;
+                                        Log.d("simpleratingview", "Attempt " + attempts);
+                                        if (attempts <= 3)
+                                            refreshDrawable();
+                                        else
+                                            attempts = 0;
+                                    }
+                                }, 50);
+                            }
+                        });
     }
 
     public void setChecked(boolean checked) {
