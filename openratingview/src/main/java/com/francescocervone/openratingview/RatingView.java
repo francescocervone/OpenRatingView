@@ -74,12 +74,13 @@ public class RatingView extends LinearLayout {
     }
 
     public void setRating(int rating) {
-        this.mRating = rating;
+        mRating = rating;
         for (int i = 0; i < mStars.length; i++) {
-            if (i < rating)
+            if (i < rating) {
                 mStars[i].setChecked(true);
-            else
+            } else {
                 mStars[i].setChecked(false);
+            }
         }
     }
 

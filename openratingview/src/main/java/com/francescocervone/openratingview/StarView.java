@@ -91,15 +91,17 @@ public class StarView extends AppCompatImageView implements ImageLoader.Callback
     @DrawableRes
     private int getDrawable(boolean checked) {
         if (checked) {
-            if (mColor == RatingView.COLOR_WHITE)
+            if (mColor == RatingView.COLOR_WHITE) {
                 return R.drawable.ic_star_white;
-            else
+            } else {
                 return R.drawable.ic_star_black;
+            }
         } else {
-            if (mColor == RatingView.COLOR_WHITE)
+            if (mColor == RatingView.COLOR_WHITE) {
                 return R.drawable.ic_star_outline_white;
-            else
+            } else {
                 return R.drawable.ic_star_outline_black;
+            }
         }
     }
 
