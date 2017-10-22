@@ -11,7 +11,7 @@ public class RatingView extends LinearLayout {
     public static final int COLOR_WHITE = 0, COLOR_BLACK = 1;
     private int mMaxRating;
     private StarView[] mStars;
-    private OnStarClickListener onStarClickListener;
+    private OnStarClickListener mOnStarClickListener;
     private int mRating;
     private int mColor = COLOR_WHITE;
 
@@ -62,11 +62,11 @@ public class RatingView extends LinearLayout {
     }
 
     public OnStarClickListener getOnStarClickListener() {
-        return onStarClickListener;
+        return mOnStarClickListener;
     }
 
     public void setOnStarClickListener(OnStarClickListener onStarClickListener) {
-        this.onStarClickListener = onStarClickListener;
+        mOnStarClickListener = onStarClickListener;
     }
 
     public int getRating() {

@@ -1,18 +1,15 @@
 package com.francescocervone.openratingview;
 
 import android.content.Context;
-import android.os.Handler;
+import android.support.annotation.DrawableRes;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
+import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-
-public class StarView extends AppCompatImageView {
+public class StarView extends AppCompatImageView implements ImageLoader.Callback {
     private int mPosition;
     private RatingView mRatingView;
     private boolean mChecked;
@@ -42,16 +39,27 @@ public class StarView extends AppCompatImageView {
         mColor = color;
         mPosition = position;
         setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+    }
 
-        setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mRatingView.setRating(mPosition);
-                RatingView.OnStarClickListener listener = mRatingView.getOnStarClickListener();
-                if (listener != null)
-                    listener.onClick(mPosition);
-            }
-        });
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                return true;
+            case MotionEvent.ACTION_UP:
+                return performClick();
+        }
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean performClick() {
+        mRatingView.setRating(mPosition);
+        RatingView.OnStarClickListener listener = mRatingView.getOnStarClickListener();
+        if (listener != null) {
+            listener.onClick(mPosition);
+        }
+        return super.performClick();
     }
 
     @Override
@@ -64,33 +72,11 @@ public class StarView extends AppCompatImageView {
     private void refreshDrawable() {
         if (mWidth <= 0)
             return;
-        Picasso.with(getContext())
-                .load(getDrawable(mChecked))
-                .noFade()
-                .resize(mWidth, mWidth)
-                .centerInside()
-                .into(StarView.this,
-                        new Callback() {
-                            @Override
-                            public void onSuccess() {
-                                attempts = 0;
-                            }
 
-                            @Override
-                            public void onError() {
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        attempts++;
-                                        Log.d("simpleratingview", "Attempt " + attempts);
-                                        if (attempts <= 3)
-                                            refreshDrawable();
-                                        else
-                                            attempts = 0;
-                                    }
-                                }, 50);
-                            }
-                        });
+        ImageLoader.load(getDrawable(mChecked))
+                .resize(mWidth, mWidth)
+                .callback(this)
+                .into(this);
     }
 
     public void setChecked(boolean checked) {
@@ -102,6 +88,7 @@ public class StarView extends AppCompatImageView {
         return mChecked;
     }
 
+    @DrawableRes
     private int getDrawable(boolean checked) {
         if (checked) {
             if (mColor == RatingView.COLOR_WHITE)
@@ -114,5 +101,23 @@ public class StarView extends AppCompatImageView {
             else
                 return R.drawable.ic_star_outline_black;
         }
+    }
+
+    @Override
+    public void onSuccess() {
+        attempts = 0;
+    }
+
+    @Override
+    public void onError() {
+        postDelayed(() -> {
+            Log.d("simpleratingview", "Attempt " + attempts);
+            attempts++;
+            if (attempts <= 3) {
+                refreshDrawable();
+            } else {
+                attempts = 0;
+            }
+        }, 50);
     }
 }
