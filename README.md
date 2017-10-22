@@ -2,7 +2,9 @@
 Android library to create and manage simple rating views with stars.
 
 <img src="screen.png" alt="screenshot" width="50%" height="50%"/>
+
 ## Including in your project
+
 * Add in your root `build.gradle` at the end of repositories:
 ```Gradle
 allprojects {
@@ -16,7 +18,10 @@ allprojects {
 ```
 dependencies {
     ...
-    compile 'com.github.francescocervone:OpenRatingView:1.0.1'
+    compile 'com.github.francescocervone:OpenRatingView:1.1.0'
+    // You need to add Glide or Picasso dependency.
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.github.bumptech.glide:glide:4.2.0'
 }
 ```
 
