@@ -1,7 +1,7 @@
 # OpenRatingView
 Android library to create and manage simple rating views with stars.
 
-<img src="screen.png" alt="screenshot" width="50%" height="50%"/>
+<img src="https://raw.githubusercontent.com/francescocervone/OpenRatingView/master/screen.png" alt="screenshot" width="50%" height="50%"/>
 
 ## Including in your project
 
