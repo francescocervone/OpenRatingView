@@ -1,0 +1,8 @@
+title: OpenRatingView
+description: Android library to create and manage simple rating views with stars.
+google_analytics: UA-47049106-6
+show_downloads: true
+theme: jekyll-theme-architect
+
+gems:
+  - jekyll-mentions
