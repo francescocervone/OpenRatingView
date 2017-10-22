@@ -1,20 +1,18 @@
 package com.francescocervone.openratingview;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
 import android.os.Handler;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-public class StarView extends ImageView {
+public class StarView extends AppCompatImageView {
     private int mPosition;
     private RatingView mRatingView;
     private boolean mChecked;
@@ -37,11 +35,6 @@ public class StarView extends ImageView {
 
     public StarView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public StarView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     private void init(int position, int color, RatingView ratingView) {

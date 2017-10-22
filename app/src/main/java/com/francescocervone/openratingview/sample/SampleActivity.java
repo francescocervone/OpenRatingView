@@ -1,6 +1,5 @@
 package com.francescocervone.openratingview.sample;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,7 +17,7 @@ public class SampleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sample);
-        mRatingView = (RatingView) findViewById(R.id.rating_view);
+        mRatingView = findViewById(R.id.rating_view);
         mRatingView.setOnStarClickListener(new RatingView.OnStarClickListener() {
             @Override
             public void onClick(int position) {
